@@ -5,27 +5,27 @@ namespace OAuth2\Provider;
 use OAuth2\Provider;
 use OAuth2\Token_Access;
 
-class Facebook extends Provider
+class Vkontakte extends Provider
 {
-	public $name = 'facebook';
+	public $name = 'vkontakte';
 
 	public $uid_key = 'uid';
 
-	public $scope = array('email', 'read_stream');
+	public $scope = array('wall','photos','offline','friends','messages');
 
 	public function url_authorize()
 	{
-		return 'https://www.facebook.com/dialog/oauth';
+		return 'https://oauth.vk.com/authorize';
 	}
 
 	public function url_access_token()
 	{
-		return 'https://graph.facebook.com/oauth/access_token';
+		return 'https://oauth.vk.com/access_token';
 	}
 
 	public function get_user_info(Token_Access $token)
 	{
-		$url = 'https://graph.facebook.com/me?'.http_build_query(array(
+		$url = 'https://api.vk.com/method/users.get?'.http_build_query(array(
 			'access_token' => $token->access_token,
 		));
 

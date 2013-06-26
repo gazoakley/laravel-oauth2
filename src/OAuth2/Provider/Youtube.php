@@ -2,7 +2,7 @@
 
 namespace OAuth2\Provider;
 
-use OAuth2\Provider\Google;
+use OAuth2\Token_Access;
 
 class Youtube extends Google {
 
