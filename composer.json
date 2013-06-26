@@ -7,7 +7,7 @@
 	"require": {
 		"laravel/framework": "4.0.*"
 	},
-	"autoload": {
+	"autoload": { 
 		"psr-0": {
 			"OAuth2": "src/"
 		}
