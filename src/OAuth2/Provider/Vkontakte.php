@@ -11,7 +11,9 @@ class Vkontakte extends Provider
 
 	public $uid_key = 'uid';
 
-	public $scope = array('wall','photos','offline','friends','messages');
+	public $scope = array('wall','photos','offline','friends');
+
+	private $fields = "nickname,contacts,bdate,photo_max_orig";
 
 	public function url_authorize()
 	{
@@ -27,22 +29,19 @@ class Vkontakte extends Provider
 	{
 		$url = 'https://api.vk.com/method/users.get?'.http_build_query(array(
 			'access_token' => $token->access_token,
+			'fields' => $this->fields,
 		));
 
-		$user = json_decode(file_get_contents($url));
+		$response = json_decode(file_get_contents($url));
+		$user = $response->response[0];
 
 		// Create a response from the request
 		return array(
-			'uid' => $user->id,
-			'nickname' => $user->username,
-			'name' => $user->name,
-			'email' => $user->email,
-			'location' => $user->hometown->name,
-			// 'description' => $user->bio,
-			'image' => 'https://graph.facebook.com/me/picture?type=normal&access_token='.$token->access_token,
-			'urls' => array(
-			  'Facebook' => $user->link,
-			),
+			'uid' => $user->uid,
+			'nickname' => isset($user->nickname) ? $user->nickname : "",
+			'name' => $user->first_name.' '.$user->last_name,
+			'email' => isset($user->email) ? $user->email : "",
+			'image' => isset($user->photo_max_orig) ? $user->photo_max_orig : "",
 		);
 	}
 }

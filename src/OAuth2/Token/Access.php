@@ -41,8 +41,17 @@ class Token_Access extends Token
 	 */
 	public function __construct(array $options)
 	{
+
+		if (!isset($options['access_token'])) {
+			reset($options);
+			$first_key = key($options);
+			$options = json_decode($first_key); 
+			$options = get_object_vars($options);
+		}
+
 		if ( ! isset($options['access_token']))
 		{
+
 			throw new Exception('Required option not passed: access_token'.PHP_EOL.print_r($options, true));
 		}
 

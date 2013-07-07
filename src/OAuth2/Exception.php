@@ -41,7 +41,6 @@ class Exception extends \Exception {
 		{
 			$message = 'Unknown Error.';
 		}
-
 		parent::__construct($message, $code);
 	}
 }
