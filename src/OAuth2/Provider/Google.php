@@ -65,9 +65,10 @@ class Google extends Provider {
 		));
 		
 		$user = json_decode(file_get_contents($url), true);
+
 		return array(
 			'uid' => $user['id'],
-			'nickname' => strtolower(Laravel\Str::slug($user['name'], '_')),
+			'nickname' => "",
 			'name' => $user['name'],
 			'first_name' => $user['given_name'],
 			'last_name' => $user['family_name'],
