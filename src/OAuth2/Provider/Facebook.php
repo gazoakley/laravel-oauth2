@@ -37,11 +37,9 @@ class Facebook extends Provider
 			'nickname' => $user->username,
 			'name' => $user->name,
 			'email' => $user->email,
-			'location' => $user->hometown->name,
-			// 'description' => $user->bio,
-			'image' => 'https://graph.facebook.com/me/picture?type=normal&access_token='.$token->access_token,
+			'image' => 'https://graph.facebook.com/me/picture?type=normal&access_token=' . $token->access_token,
 			'urls' => array(
-			  'Facebook' => $user->link,
+				$this->name => $user->link,
 			),
 		);
 	}
