@@ -130,12 +130,11 @@ abstract class Provider {
 		}
 
 		$params = array(
-			'client_id' 		=> $this->client_id,
-			'redirect_uri' 		=> isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri,
-			'state' 			=> $state,
-			'scope'				=> is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
-			'response_type' 	=> 'code',
-			'approval_prompt' => 'force' // - google force-recheck
+			'client_id' 	=> $this->client_id,
+			'redirect_uri' 	=> isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri,
+			'state' 	=> $state,
+			'scope' 	=> is_array($this->scope) ? implode($this->scope_seperator, $this->scope) : $this->scope,
+			'response_type'	=> 'code',
 		);
 
 		$url = $this->url_authorize().'?'.http_build_query($params);
